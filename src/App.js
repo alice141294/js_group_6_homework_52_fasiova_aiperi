@@ -7,7 +7,29 @@ class App extends Component{
     numbers: []
   };
   
-  
+  generateNewNums = () => {
+    let array = [];
+
+    for(let i = 0; i < 5;) {
+      const number = Math.floor(Math.random() * (36 - 5 + 1) + 5);
+
+      if(array.includes(number)) {
+       continue;
+      }
+      else {
+        array.push(number);
+        i++
+      }
+    }
+
+    array.sort((a,b) => {
+      return a-b;
+    });
+    this.setState({
+      numbers: array,
+    })
+  };
+
   
   render() {
     return (
