@@ -1,13 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class Circle extends Component{
-    render(){
-        return(
-            <div className = 'nums'>
-                <p className='randomNums'> {this.props.numbers}</p>
-            </div>
-        )
-    }
-}
+const Circle = props => {
+    return (
+        <div className='circle'>
+            {props.number}
+        </div>
+    )
+};
 
 export default Circle;

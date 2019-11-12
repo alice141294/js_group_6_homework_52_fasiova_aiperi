@@ -1,29 +1,48 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Circle from "./components/Circle/circle";
 
-class App extends Component() {
-  render(){
+class App extends Component{
+  state = {
+    numbers: []
+  };
+  
+  generateNewNums = () => {
+    let array = [];
+    
+    for(let i = 0; i < 5;) {
+      const number = Math.floor(Math.random() * (36 - 5 + 1) + 5);
+      
+      if(array.includes(number)) {
+        continue;
+      }
+      else {
+        array.push(number);
+        i++
+      }
+    }
+    
+    array.sort((a,b) => {
+      return a-b;
+    });
+    this.setState({
+      numbers: array,
+    })
+  };
+  
+  render() {
     return (
       <div className="App">
-      <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>
-      Edit <code>src/App.js</code> and save to reload.
-      </p>
-      <a
-      className="App-link"
-      href="https://reactjs.org"
-      target="_blank"
-      rel="noopener noreferrer"
-      >
-      Learn React
-      </a>
-      </header>
+      <div>
+      <button className='btn' onClick={this.generateNewNums}>New Numbers</button>
+      </div>
+      {this.state.numbers.map(number=>{
+        return <Circle number={number} />
+      })}
       </div>
       );
     }
+    
   }
   
   export default App;
-  
